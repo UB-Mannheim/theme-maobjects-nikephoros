@@ -60,7 +60,7 @@
 
                 <div class="uma-header-right">
                     <nav id="top-nav" role="navigation">
-                        <?php echo mashare_public_nav_main(); ?>
+                        <?php echo centerrow_public_nav_main(); ?>
                     </nav>
                     <?php if (get_theme_option('no_quicksearch') != 1): ?>
                         <div id="search-container" role="search">

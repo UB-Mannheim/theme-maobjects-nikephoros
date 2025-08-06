@@ -10,7 +10,7 @@ function mashare_display_featured_exhibit() {
     return $html;
 }
 
-function mashare_get_square_thumbnail_url($file, $view) {
+function centerrow_get_square_thumbnail_url($file, $view) {
     if ($file->hasThumbnail()) {
         $squareThumbnail = file_display_url($file, 'square_thumbnail');
     } else {
@@ -21,7 +21,7 @@ function mashare_get_square_thumbnail_url($file, $view) {
     return $squareThumbnail;
 }
 
-function mashare_public_nav_main() {
+function centerrow_public_nav_main() {
     $view = get_view();
     $nav = new Omeka_Navigation;
     $nav->loadAsOption(Omeka_Navigation::PUBLIC_NAVIGATION_MAIN_OPTION_NAME);

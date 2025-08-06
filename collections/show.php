@@ -20,7 +20,7 @@ $totalItems = metadata('collection', 'total_items');
     <?php endif; ?>
 </style>
 
-<div id="collection-items" class="items browse">
+<div id="collection-items" class="items browse <?php echo get_theme_option('browse_item_style') ?>">
     <h2><?php echo __('Collection Items'); ?></h2>
     <?php if ($totalItems > 0): ?>
         <?php foreach (loop('items') as $item): ?>

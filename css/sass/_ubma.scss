@@ -17,12 +17,40 @@ a:focus {
     border-top: none;
 }
 
-.browse .hentry {
-    h1, h2, h3, h4 {
-        color: $uni-blau;
-
-        a {
+// Item browse page:
+.browse {
+    .hentry {
+        h1, h2, h3, h4 {
             color: $uni-blau;
+    
+            a {
+                color: $uni-blau;
+            }
+        }
+    }
+
+    // Alternating row colors:
+    .records > div.list:nth-of-type(odd) {
+        background-color: #f6f6f6;
+    }
+  
+    .records > div.list:nth-of-type(even) {
+        background-color: white;
+    }
+  
+    // List specific styles:
+    .item-meta.hentry.list {
+        .item-meta-content {
+            display: flex;
+        }
+    
+        .item-img {
+            margin-right: 3%;
+            max-width: 120px;
+    
+            img {
+                max-width: 100%;
+            }
         }
     }
 }
@@ -115,6 +143,41 @@ header nav .navigation li {
             border-bottom: 0.1875rem solid $uni-blau;
         }
     }
+
+    // Submenu styling:
+    &.nav-item {
+        a {
+            margin-bottom: 0;
+        }
+
+        & > div {
+            background-color: #232e58;
+            color: #fff;
+
+            .parent {
+                display: none;
+            }
+
+            a {
+                color: #fff;
+                border-bottom: none;
+
+                &:not(.parent)::before {
+                    display: none;
+                    margin-right: 15px;
+                }
+
+                &:hover {
+                    border-bottom: 0.1875rem solid $uni-blau-hell;
+                }
+            }
+        }
+
+        .sub-nav ul li {
+            padding: 10px;
+            margin-right: 5px;
+        }
+    }
 }
 
 /* jcarousel left / right */
@@ -201,33 +264,40 @@ header nav .navigation li {
     color: #fff;
 }
 
-#home #search-form {
-    background-color: $uni-blau;
-    border-radius: 15px;
-    padding: 8px 8px 8px 8px;
-
-    input, button {
-        margin-bottom: 0rem;
-        padding-bottom: 0px;
-        &:hover {
-            // color: $uni-blau;
-            background: #fff;
-            // border: 0.1875rem solid $uni-blau-hell;
+#home {
+    #search-form {
+        background-color: $uni-blau;
+        border-radius: 15px;
+        padding: 8px 8px 8px 8px;
+    
+        input, button {
+            margin-bottom: 0rem;
+            &:hover {
+                // color: $uni-blau;
+                background: #fff;
+                // border: 0.1875rem solid $uni-blau-hell;
+            }
         }
     }
-}
 
-#home #submitt-search {
-    border: none;
-    padding-right: 10px;
-    margin-left: 10px;
-    margin-bottom: 0px;
-  
-    &::after {
-        width: inherit;
+    #submitt-search {
+        border: none;
+        padding-right: 10px;
+        margin-left: 10px;
+        margin-bottom: 0px;
+        
+        &::after {
+            width: inherit;
+        }
+    }
+
+    // Hide line on top of h1 on home page:
+    #home #wrap #content h1:before {
+        display: none;
     }
 }
 
+// Header search form:
 #search-container {
     right: 15px;
 
@@ -293,7 +363,8 @@ header nav .navigation li {
     }
 }
 
-#advanced-search-form {
+// Advanced search:
+.advanced-search #advanced-search-form {
     button {
         @include button_blau;
         border-radius: 4px; //TODO: why is this needed?
@@ -305,27 +376,27 @@ header nav .navigation li {
             padding: 4px;
         }
     }
+
+    input#submit_search_advanced[type=submit] {
+        font-weight: normal;
+    }
+    
+    // Erweiterte Suche Überschrift "Feld löschen" ausblenden // TODO: sollte konfigurierbar sein
+    #search-narrow-by-fields-remove-field {
+        display: none;
+    }
+    #search-narrow-by-fields-label.label {
+        color: #232e58;
+        background: transparent;
+    }
+    #submit_search_advanced {
+        font-size: inherit;
+    }
 }
 
 #no-results {
     margin-top: 80px;
     margin-bottom: 80px;
-}
-
-input#submit_search_advanced[type=submit] {
-    font-weight: normal;
-}
-
-// Erweiterte Suche Überschrift "Feld löschen" ausblenden // TODO: sollte konfigurierbar sein
-#search-narrow-by-fields-remove-field {
-    display: none;
-}
-#search-narrow-by-fields-label.label {
-    color: #232e58;
-    background: transparent;
-}
-#submit_search_advanced {
-    font-size: inherit;
 }
 
 .collection.hentry,
@@ -338,27 +409,30 @@ input#submit_search_advanced[type=submit] {
     }
 }
 
-.logos {
-    text-align: right;
-    right: 0;
-    position: absolute;
-
-    .logo1, .logo2 {
-        display: inline-block;
-    }
-   .logo2 {
-       .hosted {
-           display: block;
-           text-align: left;
+//Footer:
+footer {
+    .logos {
+        text-align: right;
+        right: 0;
+        position: absolute;
+    
+        .logo1, .logo2 {
+            display: inline-block;
+        }
+       .logo2 {
+           .hosted {
+               display: block;
+               text-align: left;
+           }
        }
-   }
-
-    .ub-logo {
-        height: 50px;
-    }
-    .uni-logo {
-        height: 50px;
-        margin-right: 20px;
+    
+        .ub-logo {
+            height: 50px;
+        }
+        .uni-logo {
+            height: 50px;
+            margin-right: 20px;
+        }
     }
 }
 
@@ -424,11 +498,6 @@ input#submit_search_advanced[type=submit] {
     }
 }
 
-// Hide line on top of h1 on home page:
-#home #wrap #content h1:before {
-    display: none;
-}
-
 // Style Collection title in item overview:
 #item-filters ul {
     text-align: inherit;
@@ -436,7 +505,8 @@ input#submit_search_advanced[type=submit] {
 
     li {
         border: none;
-        font-size: 30px;
+        font-size: medium;
+        font-style: italic;
         margin-left: 0px;
         margin-bottom: 15px;
         padding-left: 0px;
@@ -461,5 +531,84 @@ input#submit_search_advanced[type=submit] {
 
     #top-nav ul.nav-menu {
         margin: unset;
+    }
+}
+
+// Search results page:
+.search {
+    #search-filters {
+    display: none;
+    }
+
+    #search-results {
+        border: none;
+
+        thead,
+        tbody .item td:first-child {
+            display: none;
+        }
+
+        td, th {
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-left: 10px;
+            border-style: none;
+            line-height: 1.25;
+
+            a {
+                border-bottom: none;
+            }
+
+            a:hover {
+                border-bottom: 0.1875rem solid $uni-blau-hell;
+            }
+        }
+    }
+}
+
+// Plugin Facets: horizontal styling: (item browse and collection views)
+.facets-layout-horizontal {
+    margin-top: unset;
+
+    #facets-body {
+        border-color: #232e58;
+        border-width: 2px 2px 2px 2px;
+        border-style: solid;
+    }
+
+    button#facets-title {
+        color: unset;
+        width: unset;
+    }
+}
+
+/*** Collection Show page: Listview if set ***/
+.collections #collection-items.browse.list {
+    .item {
+        padding: 10px;
+        width: 100%;
+
+        &:nth-child(odd) {
+            background-color: #f6f6f6;
+        }
+
+        &:nth-child(even) {
+            background-color: #ffffff;
+        }
+    }
+
+    .item-meta {
+        text-align: left;
+        a {
+            border-bottom: none;
+        }
+
+        .item-img {
+            display: none;
+        }
+
+        a:hover {
+            border-bottom: 0.1875rem solid #abb8ca;
+        }
     }
 }

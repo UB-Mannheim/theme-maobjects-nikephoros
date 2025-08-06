@@ -16,11 +16,11 @@
     $floatingHome = get_theme_option('floating_homepage');
     is_numeric($backgroundImageOpacity) ? $backgroundImageOpacity / 100 : 100;
     $show_element_set_headings = get_option('show_element_set_headings');
-    $collectionitems_as_list = get_theme_option('collectionitems_as_list');
     $media_lightgallery_pdf_embed_hide_toolbar = get_theme_option( 'media_lightgallery_pdf_embed_hide_toolbar');
     $media_lightgallery_pdf_embed_hide_toolbar = get_theme_option( 'media_lightgallery_pdf_embed_hide_toolbar');
     $item_page_layout = get_theme_option( 'item_page_layout');
     $show_breadcrumbs = get_theme_option( 'show_breadcrumbs');
+    $browse_hide_sec_nav = get_theme_option('browse_hide_sec_nav');
 ?>
 
 <style>
@@ -181,37 +181,7 @@
     }
     <?php endif; ?>
 
-    /*** Collections: Listview ***/
-    <?php if ($collectionitems_as_list == '1') : ?>
-        .collections #collection-items .item, .browse .item {
-            padding: 10px;
-            width: 100%;
-        }
 
-        .collections #collection-items .item-meta, .browse .item-meta {
-            text-align: left;
-        }
-
-        .collections #collection-items .item-meta a, .browse .item-meta a {
-            border-bottom: none;
-        }
-
-        .collections #collection-items .item-meta .item-img, .browse .item-meta .item-img {
-            display: none;
-        }
-
-        .collections #collection-items .item-meta a:hover, .browse .item-meta a:hover {
-            border-bottom: 0.1875rem solid #abb8ca;
-        }
-
-        .browse .item:nth-child(odd) {
-            background-color: #f6f6f6;
-        }
-
-        .browse .item:nth-child(even) {
-            background-color: #ffffff;
-        }
-    <?php endif; ?>
 
     <?php if ($media_lightgallery_pdf_embed_hide_toolbar == '1') : ?>
     #wrap .lightgallery .toolbar {
@@ -237,6 +207,13 @@
     .secondary-content {
         display: flex;
         flex-direction: column;
+    }
+    <?php endif; ?>
+
+    /* Hide Secondary Navigation */
+    <?php if ($browse_hide_sec_nav == '1') : ?>
+    nav.navigation.secondary-nav > ul > li {
+        display: none;
     }
     <?php endif; ?>
 
