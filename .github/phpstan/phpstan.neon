@@ -36,6 +36,9 @@ parameters:
     - '#Function exhibit_builder_link_to_exhibit not found#'
     - '#Function exhibit_builder_random_featured_exhibit not found#'
     - '#Function link_to_exhibit not found#'
+    - '#Variable \$tags might not be defined.#'
+    - '#Variable \$corrections_correction might not be defined.#'
+    - '#Variable \$elements might not be defined.#'
 
   # TODO: An alternative to `ignoreErrors` could be to add PHPDoc in each view file. Something like:
   # <?php
