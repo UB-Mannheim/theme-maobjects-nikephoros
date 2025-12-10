@@ -1,11 +1,11 @@
 # Omeka Classic theme for MAObjects
 
-This theme is based on the [Center Row](https://github.com/omeka/theme-centerrow) theme.
+This theme is based on the [MAObjects](https://github.com/UB-Mannheim/theme-maobjects) theme, which itself is based on the [Center Row](https://github.com/omeka/theme-centerrow) theme.
 
 It is used by the [Mannheim University Library](https://www.bib.uni-mannheim.de) in the context of [MAObjects](https://www.bib.uni-mannheim.de/en/teaching-and-research/research-data-center-fdz/services-of-the-fdz/maobjects/) Omeka deployments to provide a theme in the corporate design of the [University of Mannheim](https://www.uni-mannheim.de/). MAObjects is a service of the Mannheim University Library that provides researchers with an Omeka-based platform to create and present digital object collections and virtual exhibitions by uploading digital objects, describing them with standardised metadata, and making the data available via an API.
 
 <!-- ![Theme Example (Kotzebue Exhibition)](theme.jpg) -->
-<a href="https://fdz.bib.uni-mannheim.de/kotzebue/"><img src="theme.jpg" alt="Theme Example (Kotzebue Exhibition)" style="max-width:70%; height:auto;" /></a>
+<a href="https://fdz.bib.uni-mannheim.de/nikephoros/"><img src="theme.jpg" alt="Theme Example (Nikephoros Bibliography of Sport in Antiquity)" style="max-width:100%; height:auto;" /></a>
 
 - **Very customizable:** Optional advanced site-wide search, ability to route or hide the quick search bar, and show/hide child pages in top navigation.
 - **Customizable homepage:** Featured item/collection/exhibit, intro text, optional slideshow with autoplay and speed, optional “floating” minimal homepage layout, and toggleable breadcrumbs.
