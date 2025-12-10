@@ -29,6 +29,16 @@ a:focus {
         }
     }
 
+    // Grid view styling:
+    // Image container hides image overflow
+    .records {
+        .item-img {
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+        }
+    }
+
+    // List view styling:
     // Alternating row colors:
     .records > div.list:nth-of-type(odd) {
         background-color: #f6f6f6;
@@ -55,9 +65,50 @@ a:focus {
     }
 }
 
+// Item show page:
+.show {
+    // Layout of the main content container (some properties set in theme_option_styles.php):
+    .content-container {
+        display: flex;
+        flex-direction: column;
+        
+        .primary-content {
+            flex-basis: 50%;
+            // For multi-media display:
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            gap: 0.2rem;
+        }
+
+        .secondary-content {
+            flex-basis: auto;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}
+
+// Main article content area:
 #content {
+    // Headings in UniMa blue:
     h1, h2, h3, h4 {
         color: $uni-blau;
+
+        // No hover effect on headings:
+        img:hover {
+            transform: none;
+            transition: none;
+        }
+    }
+
+    // Image hover effect:
+    img{
+        &:hover {
+            transform: scale(1.05);
+        }
+        transition: all .4s;
     }
 }
 
@@ -91,7 +142,8 @@ a.cover,
 }
 
 /* Unterstreichungen bei a ausschalten */
-.item-meta .item-img, 
+.collection .item-img,
+.item-meta .item-img,
 li.pagination_next,
 .jcarousel-wrapper {
     a {
@@ -518,6 +570,10 @@ footer {
     margin-left: 2.5rem;
 }
 
+li {
+    list-style-type: disc;
+}
+
 /* Fix nav-menu on mobile devices */
 @media screen and (max-width: 640px) {
     .align-bottom {
@@ -571,9 +627,10 @@ footer {
     margin-top: unset;
 
     #facets-body {
-        border-color: #232e58;
+        border-color: $uni-blau;
         border-width: 2px 2px 2px 2px;
         border-style: solid;
+        border-radius: .5rem;
     }
 
     button#facets-title {
@@ -609,6 +666,63 @@ footer {
 
         a:hover {
             border-bottom: 0.1875rem solid #abb8ca;
+        }
+    }
+}
+
+/** Files show page styling **/
+.files.show {
+    #content {
+        display: flex;
+        gap: 2rem;
+
+        // Hide h1 and h2 headings:
+        h1,h2 {
+            display: none;
+        }
+
+        // Image hover effect off:
+        img:hover {
+            transform: none;
+            transition: none;
+        }
+    }
+}
+
+// Buttons for item navigation (previous/next) on item show page:
+.item-nav-buttons {
+    margin: 2rem 0;
+
+    // Make the list a flex container and remove default list styles:
+    .item-pagination {
+        
+        &.navigation li {
+            display: flex;
+            justify-content: space-between; // one button left, one right
+            align-items: center;
+            list-style: none;
+            margin: 0;
+        }
+
+        // Turn links into buttons:
+        a {
+            display: inline-block;
+            padding: 0.6rem 1.4rem;
+            border-radius: 8px;
+            border: 1px solid $uni-blau;
+            background: white;
+            color: $uni-blau;
+            font-weight: 600;
+            font-size: 0.95rem;
+
+            transition: all .2s ease-out;
+
+            // Hover/focus effect:
+            &:hover,
+            &:focus {
+                background: $uni-blau;
+                color: white;
+            }
         }
     }
 }

@@ -1,0 +1,58 @@
+name: PHP Lint & Static Analysis
+
+on:
+  push:
+    branches: [ master, 'feat/**' ]
+    paths:
+      - '**/*.php'
+      - '.github/workflows/php-workflow.yml'
+      - '.github/phpstan/**'
+  pull_request:
+    branches: [ master ]
+    paths:
+      - '**/*.php'
+      - '.github/workflows/php-workflow.yml'
+      - '.github/phpstan/**'
+  workflow_dispatch:
+
+jobs:
+  php-checks:
+    runs-on: ubuntu-latest
+
+    steps:
+      #  Checkout Omeka core:
+      - name: Checkout Omeka core
+        uses: actions/checkout@v5
+        with:
+          repository: omeka/Omeka
+          path: omeka-core
+          fetch-depth: 1
+
+      #  Checkout the theme to be analyzed:
+      - name: Checkout theme
+        uses: actions/checkout@v5
+        with:
+          repository: ${{ github.repository }}
+          path: omeka-core/themes/maobjects
+
+      # Setup PHP with PHPStan:
+      - name: Setup PHP (with PHPStan)
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          coverage: none
+          tools: phpstan
+
+      # Start Checks:
+      - name: PHP syntax check
+        run: |
+          set -e
+          find omeka-core/themes/maobjects -name '*.php' -print0 | xargs -0 -n1 php -l
+
+      - name: Run PHPStan
+        working-directory: omeka-core
+        run: |
+              phpstan analyse themes/maobjects \
+               --configuration=themes/maobjects/.github/phpstan/phpstan.neon \
+               --memory-limit=512M \
+               --error-format=github

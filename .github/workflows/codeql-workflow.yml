@@ -1,0 +1,53 @@
+name: CodeQL
+
+on:
+  push:
+    branches: [ master, 'feat/**' ]
+    paths:
+      - '**/*.js'
+      - '**/*.ts'
+      - 'js/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'yarn.lock'
+      - '.github/workflows/**'
+  pull_request:
+    branches: [ master ]
+    paths:
+      - '**/*.js'
+      - '**/*.ts'
+      - 'js/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'yarn.lock'
+      - '.github/workflows/**'
+  schedule: # Run once per week
+    - cron: '0 3 * * 1'
+
+jobs:
+  analyze:
+    name: Analyze (JS & GitHub Actions)
+    runs-on: ubuntu-latest
+
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'javascript', 'actions' ]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v4
+        with:
+          languages: ${{ matrix.language }}
+          queries: security-and-quality
+
+      - name: Perform CodeQL analysis
+        uses: github/codeql-action/analyze@v4

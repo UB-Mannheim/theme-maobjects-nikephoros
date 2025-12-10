@@ -24,8 +24,10 @@ $sortLinks[__('Date Added')] = 'added';
 
                 <div class="item-meta-content">
                     <?php if ($collectionImage = record_image('collection')): ?>
-                        <?php echo link_to_collection($collectionImage, array('class' => 'image')); ?>
-                    <?php endif; ?>
+                        <div class="item-img">
+                            <?php echo link_to_collection($collectionImage, array('class' => 'image')); ?>
+                        </div>
+                        <?php endif; ?>
 
                     <span class="item-meta-details">
                         <?php if ($collection->hasContributor()): ?>
@@ -39,7 +41,6 @@ $sortLinks[__('Date Added')] = 'added';
                         <?php if ($description = metadata('collection', array('Dublin Core', 'Description'), array('snippet'=>350))): ?>
                             <div class="collection-description"> <?php echo $description; ?> </div>
                         <?php endif; ?>
-
                         <?php echo link_to_items_browse(__('View the items in %s', metadata('collection', 'rich_title', array('no_escape' => true))), array('collection' => metadata('collection', 'id')), array('class' => 'view-items-link')); ?>
                         <?php fire_plugin_hook('public_collections_browse_each', array('view' => $this, 'collection' => $collection)); ?>
                     </span>
@@ -48,7 +49,9 @@ $sortLinks[__('Date Added')] = 'added';
         <?php else: ?>
             <div class="collection hentry">
                 <?php if ($collectionImage = record_image('collection')): ?>
-                    <?php echo link_to_collection($collectionImage, array('class' => 'image')); ?>
+                    <div class="item-img">
+                        <?php echo link_to_collection($collectionImage, array('class' => 'image')); ?>
+                    </div>
                 <?php endif; ?>
 
                 <h2><?php echo link_to_collection(); ?></h2>

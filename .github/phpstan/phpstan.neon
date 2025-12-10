@@ -1,0 +1,46 @@
+parameters:
+  level: 1
+
+  # Cache dir next to this config: .github/phpstan/tmp:
+  tmpDir: tmp
+
+  # bootstrapFiles:
+  #   - stubs.php
+
+  scanFiles:
+    - ../../../../application/libraries/globals.php
+
+  scanDirectories:
+    - ../../../../application/views/helpers
+    - ../../../../application/libraries/Omeka
+    - ../../../../application/libraries/Zend
+
+  # Silence 'might not be defined' for framework-injected template vars:
+  ignoreErrors:
+    - '#Variable \$this might not be defined#'
+    - '#Variable \$item might not be defined#'
+    - '#Variable \$items might not be defined#'
+    - '#Variable \$filters might not be defined#'
+    - '#Variable \$options might not be defined#'
+    - '#Variable \$children might not be defined#'
+    - '#Variable \$bodyclass might not be defined#'
+    - '#Variable \$bodyid might not be defined#'
+    - '#Variable \$container might not be defined#'
+    - '#Variable \$collection might not be defined#'
+    - '#Variable \$collections might not be defined#'
+    - '#Variable \$total_results might not be defined#'
+    - '#Variable \$query_types might not be defined#'
+    - '#Variable \$record_types might not be defined#'
+    - '#Variable \$exhibit might not be defined#'
+    - '#Variable \$exhibits might not be defined#'
+    - '#Function exhibit_builder_link_to_exhibit not found#'
+    - '#Function exhibit_builder_random_featured_exhibit not found#'
+    - '#Function link_to_exhibit not found#'
+
+  # TODO: An alternative to `ignoreErrors` could be to add PHPDoc in each view file. Something like:
+  # <?php
+  # /** @var Omeka_View $this */
+  # /** @var Omeka_Record_Collection $collection */
+  # /** @var Omeka_Record_Collection[] $collections */
+  # /** @var int $total_results */
+  # ?>

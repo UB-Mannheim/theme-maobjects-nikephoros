@@ -975,6 +975,8 @@ nav ul {
 
   /*** Collection Show page: Listview if set ***/
 
+  /** Files show page styling **/
+
   /* SEARCH RESULTS */
 
   /* ADVANCED SEARCH */
@@ -1530,6 +1532,10 @@ nav ul {
   .browse .hentry h1 a, .browse .hentry h2 a, .browse .hentry h3 a, .browse .hentry h4 a {
     color: #232e58;
   }
+  .browse .records .item-img {
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+  }
   .browse .records > div.list:nth-of-type(odd) {
     background-color: #f6f6f6;
   }
@@ -1548,8 +1554,37 @@ nav ul {
   }
 }
 @media screen {
+  .show .content-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .show .content-container .primary-content {
+    flex-basis: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 0.2rem;
+  }
+  .show .content-container .secondary-content {
+    flex-basis: auto;
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media screen {
   #content h1, #content h2, #content h3, #content h4 {
     color: #232e58;
+  }
+  #content h1 img:hover, #content h2 img:hover, #content h3 img:hover, #content h4 img:hover {
+    transform: none;
+    transition: none;
+  }
+  #content img {
+    transition: all 0.4s;
+  }
+  #content img:hover {
+    transform: scale(1.05);
   }
 }
 @media screen {
@@ -1581,7 +1616,8 @@ nav ul {
   }
 }
 @media screen {
-  .item-meta .item-img a,
+  .collection .item-img a,
+.item-meta .item-img a,
 li.pagination_next a,
 .jcarousel-wrapper a {
     border: none;
@@ -1956,6 +1992,11 @@ li.pagination_next a,
     margin-left: 2.5rem;
   }
 }
+@media screen {
+  li {
+    list-style-type: disc;
+  }
+}
 @media screen and (max-width: 640px) {
   .align-bottom {
     display: flex;
@@ -2003,6 +2044,7 @@ li.pagination_next a,
     border-color: #232e58;
     border-width: 2px 2px 2px 2px;
     border-style: solid;
+    border-radius: 0.5rem;
   }
   .facets-layout-horizontal button#facets-title {
     color: unset;
@@ -2031,6 +2073,46 @@ li.pagination_next a,
   }
   .collections #collection-items.browse.list .item-meta a:hover {
     border-bottom: 0.1875rem solid #abb8ca;
+  }
+}
+@media screen {
+  .files.show #content {
+    display: flex;
+    gap: 2rem;
+  }
+  .files.show #content h1, .files.show #content h2 {
+    display: none;
+  }
+  .files.show #content img:hover {
+    transform: none;
+    transition: none;
+  }
+}
+@media screen {
+  .item-nav-buttons {
+    margin: 2rem 0;
+  }
+  .item-nav-buttons .item-pagination.navigation li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+  }
+  .item-nav-buttons .item-pagination a {
+    display: inline-block;
+    padding: 0.6rem 1.4rem;
+    border-radius: 8px;
+    border: 1px solid #232e58;
+    background: white;
+    color: #232e58;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.2s ease-out;
+  }
+  .item-nav-buttons .item-pagination a:hover, .item-nav-buttons .item-pagination a:focus {
+    background: #232e58;
+    color: white;
   }
 }
 @media screen {

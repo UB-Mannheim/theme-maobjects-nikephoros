@@ -19,8 +19,27 @@
     $media_lightgallery_pdf_embed_hide_toolbar = get_theme_option( 'media_lightgallery_pdf_embed_hide_toolbar');
     $media_lightgallery_pdf_embed_hide_toolbar = get_theme_option( 'media_lightgallery_pdf_embed_hide_toolbar');
     $item_page_layout = get_theme_option( 'item_page_layout');
+    switch ($item_page_layout) {
+        case 'vertical':
+            $item_page_layout = 'column';
+            break;
+        case 'horizontal':
+            $item_page_layout = 'row';
+            break;
+        case 'vertical_rev':
+            $item_page_layout = 'column-reverse';
+            break;
+        case 'horizontal_rev':
+            $item_page_layout = 'row-reverse';
+            break;
+        default:
+            $item_page_layout = 'column';
+            break;
+    }
+    $item_page_layout_content_ratio = is_numeric($tmp = get_theme_option( 'item_page_layout_content_ratio')) ? $tmp : 50;
     $show_breadcrumbs = get_theme_option( 'show_breadcrumbs');
     $browse_hide_sec_nav = get_theme_option('browse_hide_sec_nav');
+    $no_img_hover_effect = get_theme_option('no_img_hover_effect');
 ?>
 
 <style>
@@ -181,8 +200,7 @@
     }
     <?php endif; ?>
 
-
-
+    /*** Lightgallery PDF embed toolbar: ***/
     <?php if ($media_lightgallery_pdf_embed_hide_toolbar == '1') : ?>
     #wrap .lightgallery .toolbar {
         display: none;
@@ -193,22 +211,17 @@
     }
     <?php endif; ?>
 
-    <?php if ($item_page_layout == 'vertical') : ?>
-    .content-container {
-        display: flex;
-        align-items: flex-start;
+    /*** Set item show page layout: ***/
+    .show .content-container {
+        flex-direction: <?php echo $item_page_layout ?>;
     }
 
-    #itemfiles {
-        flex: 0 1 auto;
-        margin-right: 20px;
+    .show .content-container .primary-content {
+        flex-basis: <?php echo $item_page_layout_content_ratio ."%" ?>;
+        <?php if ($item_page_layout == 'row' || $item_page_layout == 'row-reverse') : ?>
+            flex-direction: column;
+        <?php endif; ?>
     }
-
-    .secondary-content {
-        display: flex;
-        flex-direction: column;
-    }
-    <?php endif; ?>
 
     /* Hide Secondary Navigation */
     <?php if ($browse_hide_sec_nav == '1') : ?>
@@ -217,4 +230,11 @@
     }
     <?php endif; ?>
 
+    /* Disable Image Hover Effect */
+    <?php if ($no_img_hover_effect == '1') : ?>
+    #content img:hover {
+        transform: none !important;
+        transition: none !important;
+    }
+    <?php endif; ?>
 </style>
